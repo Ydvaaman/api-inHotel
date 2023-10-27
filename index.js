@@ -171,18 +171,14 @@ app.get('/places', async(req,res) => {
 
 app.post('/bookings',async(req,res) => {
     console.log("insight booking")
-    return res.json({
-        message:"testing error"
-    })
-    const userData = await getUserDataFromReq(req);
-    console.log("insight booking")
     const{
-        place, checkIn, checkOut, numberOfGuests, name, phone, price
+        place,email, checkIn, checkOut, numberOfGuests, name, phone, price
     } = req.body;
     // console.log(req.body)
+    const userDoc = await User.findOne({email});
     Booking.create({ 
         place, checkIn, checkOut, numberOfGuests, name, phone, price,
-        user:userData.id,
+        user:userDoc.id,
     }).then((doc) => {
         console.log("insight booking then block")
         res.json(doc);
