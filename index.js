@@ -188,7 +188,7 @@ app.post('/bookings',async(req,res) => {
 });
 
 
-app.get('/bookings',async(req,res) => {
+app.post('/bookingss',async(req,res) => {
     // const userData = await getUserDataFromReq(req);
     const {email} = req.body
     const userDoc = await User.findOne({email});
