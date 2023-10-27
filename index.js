@@ -170,6 +170,10 @@ app.get('/places', async(req,res) => {
 });
 
 app.post('/bookings',async(req,res) => {
+    console.log("insight booking")
+    return res.json({
+        message:"testing error"
+    })
     const userData = await getUserDataFromReq(req);
     console.log("insight booking")
     const{
