@@ -171,6 +171,7 @@ app.get('/places', async(req,res) => {
 
 app.post('/bookings',async(req,res) => {
     const userData = await getUserDataFromReq(req);
+    console.log("insight booking")
     const{
         place, checkIn, checkOut, numberOfGuests, name, phone, price
     } = req.body;
@@ -179,9 +180,10 @@ app.post('/bookings',async(req,res) => {
         place, checkIn, checkOut, numberOfGuests, name, phone, price,
         user:userData.id,
     }).then((doc) => {
+        console.log("insight booking then block")
         res.json(doc);
     }).catch((err) => {
-        console.log(err);
+        console.log(err+"insight booking cache block");
     });
 });
 
