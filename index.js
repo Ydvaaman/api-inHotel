@@ -130,12 +130,15 @@ app.post('/places',(req, res) => {
     });
 });
 
-app.get('/user-places',(req,res) => {
+app.post('/user-places',async(req,res) => {
     const{token} = req.cookies;
-    jwt.verify(token, jwtSecret, {}, async(err,userData) => {
-        const{id} = userData;
-        res.json(await Place.find({owner:id}));
-    });
+    const {email} = req.body
+    const userDoc = await User.findOne({email});
+    res.json(await Place.find({owner:userDoc.id}));
+    // jwt.verify(token, jwtSecret, {}, async(err,userData) => {
+    //     const{id} = userData;
+    //     res.json(await Place.find({owner:id}));
+    // });
 
 });
 
